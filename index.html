@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | فكس تراك</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Fix<span>Track</span></a>
+            <div style="display:flex; gap:10px;">
+                <button id="openModalBtn" class="btn btn-primary"><i class="fas fa-plus"></i> طلب جديد</button>
+                <button id="logoutBtn" class="btn btn-secondary"><i class="fas fa-sign-out-alt"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="dashboard-header">
+            <div>
+                <h1 style="margin:0;">لوحة التحكم</h1>
+                <p id="welcomeText" style="color:var(--gray); margin:5px 0;"></p>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-box"><h3 id="totalBookings">0</h3><p>إجمالي الطلبات</p></div>
+            <div class="stat-box"><h3 id="pendingBookings">0</h3><p>قيد المراجعة</p></div>
+            <div class="stat-box"><h3 id="progressBookings">0</h3><p>جاري التنفيذ</p></div>
+            <div class="stat-box"><h3 id="completedBookings">0</h3><p>مكتملة</p></div>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-top:0; margin-bottom:20px;"><i class="fas fa-list"></i> الطلبات الحالية</h3>
+            <div id="bookingList" class="booking-list"></div>
+        </div>
+    </div>
+
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3><i class="fas fa-tools"></i> حجز موعد صيانة جديد</h3>
+            <form id="newBookingForm">
+                <div class="form-group">
+                    <label>وصف المشكلة (بدقة)</label>
+                    <textarea id="bookingDetails" rows="4" placeholder="مثلاً: المكيف لا يبرد في الصالة.." required minlength="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-map-marker-alt"></i> موقع المنزل (حي/شارع)</label>
+                    <input type="text" id="bookingLocation" placeholder="مثلاً: حي الريان، بريدة" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">إرسال الطلب الآن</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

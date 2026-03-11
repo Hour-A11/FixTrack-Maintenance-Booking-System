@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول | فكس تراك</title>
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --dark: #0f172a;
+            --light: #f8fafc;
+        }
+
+        body {
+            margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            display: flex; align-items: center; justify-content: center;
+            min-height: 100vh; direction: rtl;
+        }
+
+        .auth-card {
+            background: white; padding: 40px; border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%; max-width: 450px; box-sizing: border-box;
+        }
+
+        .logo { text-align: center; font-size: 2rem; font-weight: 800; color: var(--dark); margin-bottom: 20px; }
+        .logo span { color: var(--primary); }
+
+        h3 { margin-top: 0; color: var(--dark); border-right: 4px solid var(--primary); padding-right: 10px; font-size: 1.2rem; }
+
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 12px; border: 1px solid #e2e8f0;
+            border-radius: 10px; background: #f8fafc; box-sizing: border-box;
+        }
+
+        .btn {
+            width: 100%; padding: 14px; border: none; border-radius: 50px;
+            font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px;
+        }
+
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
+
+        #authMessage { margin-top: 15px; text-align: center; font-weight: bold; border-radius: 8px; }
+        .error { color: #991b1b; background: #fee2e2; padding: 10px; }
+        .success { color: #166534; background: #dcfce7; padding: 10px; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="auth-card">
+        <div class="logo">Fix<span>Track</span></div>
+        
+        <form id="loginForm">
+            <h3>تسجيل الدخول</h3>
+            <div class="form-group">
+                <label>البريد الإلكتروني</label>
+                <input type="email" id="loginEmail" placeholder="example@mail.com" required>
+            </div>
+            <div class="form-group">
+                <label>كلمة المرور</label>
+                <input type="password" id="loginPassword" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn btn-primary">دخول</button>
+        </form>
+
+        <hr style="margin: 30px 0; border: 0; border-top: 1px solid #e2e8f0;">
+
+        <form id="signupForm">
+            <h3>إنشاء حساب جديد</h3>
+            <div class="form-group">
+                <label>الاسم الكامل</label>
+                <input type="text" id="signupName" required>
+            </div>
+            <div class="form-group">
+                <label>البريد الإلكتروني</label>
+                <input type="email" id="signupEmail" required>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="form-group">
+                    <label>رقم الجوال</label>
+                    <input type="text" id="signupPhone" placeholder="05xxxxxxxx">
+                </div>
+                <div class="form-group">
+                    <label>نوع الحساب</label>
+                    <select id="signupRole">
+                        <option value="client">عميل</option>
+                        <option value="admin">مسؤول</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>كلمة المرور</label>
+                <input type="password" id="signupPassword" required>
+            </div>
+            <button type="submit" class="btn" style="background: #64748b; color: white;">إنشاء حساب</button>
+        </form>
+        <div id="authMessage"></div>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
